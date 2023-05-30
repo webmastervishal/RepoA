@@ -1,0 +1,22 @@
+name: Copy tokens folder
+on: push
+
+jobs:
+  copy-file:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Pushes test folder
+      uses: datalbry/copy_folder_to_another_repo_action@1.0.0
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source_folder: 'tokens'
+        destination_repo: 'webmastervishal/RepoB'
+        destination_folder: 'tokens'
+        user_email: 'vishal.rajesh.shetty@gmail.com'
+        user_name: 'webmastervishal'
+        commit_msg: 'Pushed latest tokens from figma'
+        destination_branch: 'figma_tokens'
